@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'card',
     loadChildren: () => import('./pages/card/card.module').then( m => m.CardPageModule)
   },
+  {
+    path: 'check',
+    loadChildren: () => import('./pages/check/check.module').then( m => m.CheckPageModule)
+  },
 ];
 
 @NgModule({
