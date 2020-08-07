@@ -42,6 +42,11 @@ export class InicioPage implements OnInit {
       icon: 'calendar',
       name: 'Date Time',
       redirectTo: '/date-time'
+    },
+    {
+      icon: 'car',
+      name: 'Fab Flotante',
+      redirectTo: '/fab'
     }
   ];
 
