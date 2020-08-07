@@ -47,7 +47,7 @@ export class AlertPage implements OnInit {
       header: 'Prompt!',
       inputs: [
         {
-          name: 'name1',
+          name: 'textoInput',
           type: 'text',
           placeholder: 'Ingrese nombre'
         }
@@ -63,7 +63,7 @@ export class AlertPage implements OnInit {
         }, {
           text: 'Ok',
           handler: (data) => {
-            this.titulo = data.name1;
+            this.titulo = data.textoInput;
             console.log('OK', data);
           }
         }

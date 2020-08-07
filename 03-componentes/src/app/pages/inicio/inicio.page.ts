@@ -17,6 +17,11 @@ export class InicioPage implements OnInit {
       icon: 'logo-google-playstore',
       name: 'Alert',
       redirectTo: '/alert'
+    },
+    {
+      icon: 'beaker',
+      name: 'Avatar',
+      redirectTo: '/avatar'
     }
   ];
 
