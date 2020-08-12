@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -80,9 +81,15 @@ export class InicioPage implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private menuCtlr: MenuController) { }
 
   ngOnInit() {
+  }
+
+  toggleMenu() {
+    // toggle es que si el menu esta abierto se abra y si estpa bierto se cierrre
+    // Esta es la manera complicada de abrir o cerrar el menu
+    this.menuCtlr.toggle();
   }
 
 }

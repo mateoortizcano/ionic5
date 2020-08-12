@@ -1,5 +1,12 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button> -->
+      <!-- Esta es la manera mas facil. Con un componente especializado para abrir o cerrar el menú -->
+      <ion-menu-button color="primary" menu="primerMenu"></ion-menu-button>
+    </ion-buttons>
     <ion-title>Componentes</ion-title>
   </ion-toolbar>
 </ion-header>
