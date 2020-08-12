@@ -63,6 +63,10 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./pages/list/list.module').then( m => m.ListPageModule)
   },
+  {
+    path: 'list-reoder',
+    loadChildren: () => import('./pages/list-reoder/list-reoder.module').then( m => m.ListReoderPageModule)
+  },
 ];
 
 @NgModule({
