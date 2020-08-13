@@ -25,51 +25,55 @@ const routes: Routes = [
   },
   {
     path: 'avatar',
-    loadChildren: () => import('./pages/avatar/avatar.module').then( m => m.AvatarPageModule)
+    loadChildren: () => import('./pages/avatar/avatar.module').then(m => m.AvatarPageModule)
   },
   {
     path: 'buttons',
-    loadChildren: () => import('./pages/buttons/buttons.module').then( m => m.ButtonsPageModule)
+    loadChildren: () => import('./pages/buttons/buttons.module').then(m => m.ButtonsPageModule)
   },
   {
     path: 'card',
-    loadChildren: () => import('./pages/card/card.module').then( m => m.CardPageModule)
+    loadChildren: () => import('./pages/card/card.module').then(m => m.CardPageModule)
   },
   {
     path: 'check',
-    loadChildren: () => import('./pages/check/check.module').then( m => m.CheckPageModule)
+    loadChildren: () => import('./pages/check/check.module').then(m => m.CheckPageModule)
   },
   {
     path: 'date-time',
-    loadChildren: () => import('./pages/date-time/date-time.module').then( m => m.DateTimePageModule)
+    loadChildren: () => import('./pages/date-time/date-time.module').then(m => m.DateTimePageModule)
   },
   {
     path: 'fab',
-    loadChildren: () => import('./pages/fab/fab.module').then( m => m.FabPageModule)
+    loadChildren: () => import('./pages/fab/fab.module').then(m => m.FabPageModule)
   },
   {
     path: 'grid',
-    loadChildren: () => import('./pages/grid/grid.module').then( m => m.GridPageModule)
+    loadChildren: () => import('./pages/grid/grid.module').then(m => m.GridPageModule)
   },
   {
     path: 'infinitescroll',
-    loadChildren: () => import('./pages/infinitescroll/infinitescroll.module').then( m => m.InfinitescrollPageModule)
+    loadChildren: () => import('./pages/infinitescroll/infinitescroll.module').then(m => m.InfinitescrollPageModule)
   },
   {
     path: 'input',
-    loadChildren: () => import('./pages/input/input.module').then( m => m.InputPageModule)
+    loadChildren: () => import('./pages/input/input.module').then(m => m.InputPageModule)
   },
   {
     path: 'list',
-    loadChildren: () => import('./pages/list/list.module').then( m => m.ListPageModule)
+    loadChildren: () => import('./pages/list/list.module').then(m => m.ListPageModule)
   },
   {
     path: 'list-reoder',
-    loadChildren: () => import('./pages/list-reoder/list-reoder.module').then( m => m.ListReoderPageModule)
+    loadChildren: () => import('./pages/list-reoder/list-reoder.module').then(m => m.ListReoderPageModule)
   },
   {
     path: 'loading',
-    loadChildren: () => import('./pages/loading/loading.module').then( m => m.LoadingPageModule)
+    loadChildren: () => import('./pages/loading/loading.module').then(m => m.LoadingPageModule)
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./pages/modal/modal.module').then(m => m.ModalPageModule)
   },
 ];
 
