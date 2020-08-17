@@ -88,5 +88,10 @@
         "icon": "arrow-down-circle",
         "name": "Refresher",
         "redirectTo": "/refresher"
+    },
+    {
+        "icon": "search",
+        "name": "Search bar",
+        "redirectTo": "/searchbar"
     }
 ]

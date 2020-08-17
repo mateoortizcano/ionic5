@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Searchbar</ion-title>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Escribe" inputmode="decimal" type="decimal" (ionChange)="buscar($event)" [debounce]="250"
+    showCancelButton="always" animated></ion-searchbar>
+  <!-- debounce es el tiempo despues del cual se ejecutará el llamado al métdo. esto con el fin de que no se dispare con cada tecla presionada -->
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let album of albums | filtro: textoBuscar: 'title' ">
+      <ion-label>{{album.title}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
