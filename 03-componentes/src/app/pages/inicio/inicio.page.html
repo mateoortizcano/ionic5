@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <ion-list *ngFor="let component of components | async">
     <ion-item [routerLink]='component.redirectTo' detail>
       <ion-icon slot="start" [name]="component.icon" color="primary"></ion-icon>

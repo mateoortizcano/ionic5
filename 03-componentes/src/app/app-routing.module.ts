@@ -83,6 +83,10 @@ const routes: Routes = [
     path: 'progress-bar',
     loadChildren: () => import('./pages/progress-bar/progress-bar.module').then( m => m.ProgressBarPageModule)
   },
+  {
+    path: 'refresher',
+    loadChildren: () => import('./pages/refresher/refresher.module').then( m => m.RefresherPageModule)
+  },
 ];
 
 @NgModule({
