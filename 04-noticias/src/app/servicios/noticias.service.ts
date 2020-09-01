@@ -36,7 +36,7 @@ export class NoticiasService {
       this.headlinesPageCategoria++;
 
     } else {
-      this.headlinesPageCategoria = 0;
+      this.headlinesPageCategoria = 1;
       this.categoriaAnterior = categoria;
     }
     return this.ejecutarQuery(`/top-headlines?country=co&page=${this.headlinesPageCategoria}&category=${categoria}`);

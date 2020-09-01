@@ -2,7 +2,15 @@
   <ion-card-header>
     <ion-card-subtitle>
       <span class="text-primary">{{indice + 1}}. </span>
-      <span class="noticia-source-name">{{noticia.source.name}}</span></ion-card-subtitle>
+      <span class="noticia-source-name">{{noticia.source.name}}</span>
+
+      <div class="noticia-more">
+        <ion-button (click)="lanzarMenu()" fill="clear">
+          <ion-icon slot="end" name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </div>
+
+    </ion-card-subtitle>
     <ion-card-title (click)="abrirNoticia()">{{noticia.title}}</ion-card-title>
   </ion-card-header>
   <ion-img *ngIf="noticia.urlToImage" [src]="noticia.urlToImage" (click)="abrirNoticia()"></ion-img>
