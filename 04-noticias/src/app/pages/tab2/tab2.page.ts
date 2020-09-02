@@ -9,14 +9,20 @@ import { Article } from '../../interfaces/interfaces';
 })
 export class Tab2Page implements OnInit {
 
-  categorias = ["business", "entertainment", "general", "health", "science", "sports", "technology"];
+  categorias = [{ nombre: "negocios", filtro: "business" },
+  { nombre: "entretenimiento", filtro: "entertainment" },
+  { nombre: "general", filtro: "general" },
+  { nombre: "salud", filtro: "health" },
+  { nombre: "ciencia", filtro: "science" },
+  { nombre: "deportes", filtro: "sports" },
+  { nombre: "tecnología", filtro: "technology" }];
   noticias: Article[] = [];
-  categoriaActual = this.categorias[0];
+  categoriaActual = this.categorias[0].filtro;
 
   constructor(private noticiasService: NoticiasService) { }
 
   ngOnInit() {
-    this.cargarNoticias(this.categorias[0]);
+    this.cargarNoticias(this.categorias[0].filtro);
   }
 
   cambiarCategoria(event) {

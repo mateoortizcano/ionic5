@@ -3,6 +3,8 @@ import { Article } from '../../interfaces/interfaces';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ActionSheetController } from '@ionic/angular';
+import { DataLocalService } from '../../servicios/data-local.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-noticia',
@@ -13,9 +15,12 @@ export class NoticiaComponent implements OnInit {
 
   @Input() noticia: Article;
   @Input() indice: number;
+  @Input() esFavorito;
   constructor(private iab: InAppBrowser,
     public actionSheetCtlr: ActionSheetController,
-    private socialSharing: SocialSharing) { }
+    private socialSharing: SocialSharing,
+    private dataLocalService: DataLocalService,
+    private toastCtrl: ToastController) { }
 
   ngOnInit() { }
 
@@ -24,6 +29,29 @@ export class NoticiaComponent implements OnInit {
   }
 
   async lanzarMenu() {
+    let segundoBoton;
+    if (this.esFavorito) {
+      segundoBoton = {
+        text: 'Eliminar favorito',
+        icon: 'trash',
+        cssClass: 'action-dark',
+        handler: () => {
+          this.dataLocalService.eliminarNoticia(this.noticia);
+          this.abrirToast('Eliminado de favoritos!');
+        }
+      }
+    } else {
+      segundoBoton = {
+        text: 'Añadir a favoritos',
+        icon: 'star',
+        cssClass: 'action-dark',
+        handler: () => {
+          this.dataLocalService.guardarNoticia(this.noticia);
+          this.abrirToast('Agregado a favoritos!');
+        }
+      };
+    }
+
     const actionSheet = await this.actionSheetCtlr.create({
       buttons: [{
         text: 'Compartir',
@@ -37,14 +65,8 @@ export class NoticiaComponent implements OnInit {
             this.noticia.url
           );
         }
-      }, {
-        text: 'Añadir a favoritos',
-        icon: 'star',
-        cssClass: 'action-dark',
-        handler: () => {
-          console.log('Play clicked');
-        }
-      }, {
+      }, segundoBoton,
+      {
         text: 'Cancel',
         icon: 'close',
         role: 'cancel',
@@ -57,4 +79,13 @@ export class NoticiaComponent implements OnInit {
     await actionSheet.present();
   }
 
+  async abrirToast(mensaje: string) {
+    const toast = await this.toastCtrl.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
+  }
+
 }
+
