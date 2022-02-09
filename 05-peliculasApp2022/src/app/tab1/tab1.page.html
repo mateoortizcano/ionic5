@@ -1,0 +1,11 @@
+<ion-content [fullscreen]="true">
+  <ion-slides mode="md" pager="md" scrollbar="md" [options]="slideOpts">
+    <ion-slide *ngFor="let pelicula of peliculasRecientes">
+      
+      <ion-card>
+        <img [src]="pelicula.backdrop_path | imagen" alt="">
+      </ion-card>
+
+    </ion-slide>
+  </ion-slides>
+</ion-content>
