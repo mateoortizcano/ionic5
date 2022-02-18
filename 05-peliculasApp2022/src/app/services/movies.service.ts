@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ResultadoDBMovies } from '../interfaces/interfaces';
+import { ResultadoDBMovies, DetallesPelicula, Creditos } from '../interfaces/interfaces';
 
 const URL = environment.url;
 const API_KEY = environment.apiKey;
@@ -10,13 +10,20 @@ const API_KEY = environment.apiKey;
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesServiceService {
+export class MoviesService {
 
-  constructor(private httpClient: HttpClient) { 
+  private paginaPopulares = 0;
+
+  constructor(private httpClient: HttpClient) {
   }
 
   private ejecutarHttpQuery<T>(query: string) {
-    return this.httpClient.get<T>(`${URL}${query}&api_key=${API_KEY}`);
+    return this.httpClient.get<T>(`${URL}${query}&api_key=${API_KEY}&language=es`);
+  }
+
+  obtenerPeliculasPopulares() {
+    this.paginaPopulares++;
+    return this.ejecutarHttpQuery<ResultadoDBMovies>(`/discover/movie?sort_by=popularity.desc&page=${this.paginaPopulares}`);
   }
 
   obtenerPeliculas(): Observable<ResultadoDBMovies> {
@@ -34,5 +41,13 @@ export class MoviesServiceService {
     const fechaFinal = `${hoy.getFullYear()}-${mes}-${ultimoDiaMesActual}`;
 
     return this.ejecutarHttpQuery<ResultadoDBMovies>(`/discover/movie?primary_release_date.gte=${fechaInicial}&primary_release_date.lte=${fechaFinal}`);
+  }
+
+  obtenerDetalles(id: string) {
+    return this.ejecutarHttpQuery<DetallesPelicula>(`/movie/${id}?a=1`);
+  }
+
+  obtenerCreditos(id: string) {
+    return this.ejecutarHttpQuery<Creditos>(`/movie/${id}/credits?a=1`);
   }
 }
