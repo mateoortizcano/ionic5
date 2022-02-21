@@ -23,7 +23,6 @@ export class DetalleComponent implements OnInit {
   constructor(private moviesService: MoviesService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    console.log('ID', this.id);
     this.moviesService.obtenerDetalles(this.id).subscribe(res => {
       this.pelicula = res;
     }
