@@ -13,9 +13,9 @@ export class SlidesShowParesComponent implements OnInit {
   @Input() peliculas: Pelicula[] = [];
   @Output() cargarMas = new EventEmitter();
   slideOpts = {
-    slidesPerView: 3.3,
+    slidesPerView: 3.5,
     freeMode: true,
-    spaceBetween: -10
+    spaceBetween: -20
   }
 
   constructor(private modalCtrl: ModalController) { }

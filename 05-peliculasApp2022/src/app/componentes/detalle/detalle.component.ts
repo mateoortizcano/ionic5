@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { DetallesPelicula, Creditos } from '../../interfaces/interfaces';
+import { DetallesPelicula, Creditos, Pelicula } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
+import { MoviesStorageService } from '../../services/movies-storage.service';
 
 @Component({
   selector: 'app-detalle',
@@ -19,10 +20,13 @@ export class DetalleComponent implements OnInit {
     freeMode: true,
     spaceBetween: -15
   }
+  esFavorita = false;
 
-  constructor(private moviesService: MoviesService, private modalCtrl: ModalController) { }
+  constructor(private moviesService: MoviesService, private modalCtrl: ModalController,
+    private moviesStorage: MoviesStorageService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.esFavorita = await this.moviesStorage.peliculaEsFavorita(this.id);
     this.moviesService.obtenerDetalles(this.id).subscribe(res => {
       this.pelicula = res;
     }
@@ -34,6 +38,11 @@ export class DetalleComponent implements OnInit {
 
   regresar() {
     this.modalCtrl.dismiss();
+  }
+
+  agregarAFavoritos(pelicula: DetallesPelicula) {
+    this.esFavorita = !this.esFavorita;
+    this.moviesStorage.agregarPeliculas(pelicula);
   }
 
 }

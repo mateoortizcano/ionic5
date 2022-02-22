@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ResultadoDBMovies, DetallesPelicula, Creditos } from '../interfaces/interfaces';
+import { ResultadoDBMovies, DetallesPelicula, Creditos, Genre } from '../interfaces/interfaces';
 
 const URL = environment.url;
 const API_KEY = environment.apiKey;
@@ -49,5 +49,13 @@ export class MoviesService {
 
   obtenerCreditos(id: string) {
     return this.ejecutarHttpQuery<Creditos>(`/movie/${id}/credits?a=1`);
+  }
+
+  buscarPeliculasPorNombre(nombre: string) {
+    return this.ejecutarHttpQuery<ResultadoDBMovies>(`/search/movie?query=${nombre}`);
+  }
+
+  consultarGeneros() {
+    return this.ejecutarHttpQuery(`/genre/movie/list?a=1`);
   }
 }

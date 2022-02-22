@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Pelicula } from 'src/app/interfaces/interfaces';
 import { DetalleComponent } from '../detalle/detalle.component';
@@ -11,8 +11,9 @@ import { DetalleComponent } from '../detalle/detalle.component';
 export class SlidesShowPosterComponent implements OnInit {
 
   @Input() peliculas: Pelicula[];
+  @Output() actualizarFavoritos = new EventEmitter();
   slideOpts = {
-    slidesPerView: 1.1,
+    slidesPerView: 3.5,
     freeMode: true
   }
 
@@ -20,7 +21,7 @@ export class SlidesShowPosterComponent implements OnInit {
 
   ngOnInit() { }
 
-  async verDetalle(id: string) {
+  async verDetalle(id: number) {
     const modal = await this.modalCtrl.create({
       component: DetalleComponent,
       componentProps: {
@@ -28,6 +29,8 @@ export class SlidesShowPosterComponent implements OnInit {
       }
     });
     modal.present();
+    await modal.onWillDismiss();
+    this.actualizarFavoritos.emit();
   }
 
 }
